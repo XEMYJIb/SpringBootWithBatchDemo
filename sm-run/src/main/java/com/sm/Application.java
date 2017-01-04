@@ -7,6 +7,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.util.*;
+
 /**
  * @author ademus
  *         Date: 11/30/16
@@ -16,8 +18,9 @@ import org.springframework.context.annotation.ComponentScan;
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-        if(false) {
-            System.out.println("Start Not Web");
+        Set<String> arguments = new LinkedHashSet<String>(Arrays.asList(args));
+        if(arguments.contains("cli")) {
+            System.out.println("Start cli");
             new SpringApplicationBuilder(Application.class).web(false).run(args);
         } else {
             System.out.println("Start Web");
